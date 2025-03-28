@@ -65,7 +65,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [v] Commit: `Create SubscriberRequest model struct.`
     -   [v] Commit: `Create Notification database and Notification repository struct skeleton.`
     -   [v] Commit: `Implement add function in Notification repository.`
-    -   [ ] Commit: `Implement list_all_as_string function in Notification repository.`
+    -   [v] Commit: `Implement list_all_as_string function in Notification repository.`
     -   [ ] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
 -   **STAGE 3: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
@@ -85,5 +85,9 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+1. Why use RwLock<> instead of Mutex<>?
+    i used RwLock<> because it allows multiple readers to access the data concurrently, which is useful for scenarios where notifications are being read frequently. However, it ensures that only one writer can modify the data at a time. This is important for performance, as we want to allow reading operations to happen simultaneously without blocking each other. On the other hand, Mutex<> would lock the entire data for reading and writing, which could reduce performance when there are frequent reads.
 
+2. Why did Rust not allow mutating static variables directly?
+    Rust does not allow directly mutating static variables for safety reasons. Unlike Java, where static variables can be mutated via static functions, Rust enforces strict ownership and borrowing rules. This ensures thread safety and prevents data races. The use of lazy_static and synchronization mechanisms like RwLock ensures that we can safely mutate the static variable in a controlled manner, maintaining Rust's memory safety guarantees.
 #### Reflection Subscriber-2
